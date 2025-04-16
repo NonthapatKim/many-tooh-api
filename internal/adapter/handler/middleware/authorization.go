@@ -3,7 +3,7 @@ package middleware
 import (
 	"strings"
 
-	"github.com/NonthapatKim/many_tooth_api/internal/core/domain/response"
+	"github.com/NonthapatKim/many-tooth-api/internal/core/domain/response"
 	"github.com/gofiber/fiber/v2"
 )
 

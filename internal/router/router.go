@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/NonthapatKim/many_tooth_api/internal/adapter/handler"
-	"github.com/NonthapatKim/many_tooth_api/internal/adapter/handler/middleware"
+	"github.com/NonthapatKim/many-tooth-api/internal/adapter/handler"
+	"github.com/NonthapatKim/many-tooth-api/internal/adapter/handler/middleware"
+	swagger "github.com/arsmn/fiber-swagger/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -20,7 +21,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*", // For Develop Only
+		AllowOrigins: "*",
 		AllowMethods: "GET,POST,PUT,DELETE",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 	}))
@@ -31,6 +32,19 @@ func NewRouter(h handler.Handler) (*Router, error) {
 	basePathV1.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("สวัสดี !")
 	})
+
+	// Swagger UI
+	basePathV1.Get("/swagger/*", swagger.HandlerDefault)
+
+	basePathV1.Get("/interests", h.GetInterests)
+
+	user := basePathV1.Group("/users")
+	{
+		user.Post("/login", h.UserLogin)
+		user.Post("/login-social", h.UserLoginBySocial)
+		user.Post("/register", h.UserRegister)
+		user.Post("/refresh-token", middleware.Authorization(), h.CreateRefreshToken)
+	}
 
 	return &Router{app: app}, nil
 }

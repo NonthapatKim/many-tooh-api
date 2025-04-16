@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/NonthapatKim/many_tooth_api/internal/server"
+	"github.com/NonthapatKim/many-tooth-api/internal/server"
 )
 
 func main() {

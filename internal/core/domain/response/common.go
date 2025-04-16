@@ -1,6 +1,6 @@
 package response
 
-import "github.com/NonthapatKim/many_tooth_api/internal/core/constant"
+import "github.com/NonthapatKim/many-tooth-api/internal/core/constant"
 
 type SuccessResponse struct {
 	Code    string                  `json:"code" default:"0000"`
