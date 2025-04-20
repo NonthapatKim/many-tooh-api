@@ -16,7 +16,10 @@ type Handler interface {
 	// User
 	UserLogin(c *fiber.Ctx) error
 	UserLoginBySocial(c *fiber.Ctx) error
+	UserLogout(c *fiber.Ctx) error
 	UserRegister(c *fiber.Ctx) error
+	UserRequestResetPassword(c *fiber.Ctx) error
+	UserResetPassword(c *fiber.Ctx) error
 
 	// Refresh Token
 	CreateRefreshToken(c *fiber.Ctx) error

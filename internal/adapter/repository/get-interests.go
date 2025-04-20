@@ -12,10 +12,10 @@ func (r *repository) GetInterests() ([]domain.GetInterestsResponse, error) {
 	query := `
 		SELECT
 			interest_id,
-			image_url AS interest_image_url
+			image_url AS interest_image_url,
 			name AS interest_name
 		FROM interests
-		ORDER BY interest_id;
+		ORDER BY CAST(SUBSTRING_INDEX(interest_id, '_', -1) AS UNSIGNED) ASC;
 	`
 	rows, err := r.db.Query(query)
 	if err != nil {

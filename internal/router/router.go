@@ -42,8 +42,14 @@ func NewRouter(h handler.Handler) (*Router, error) {
 	{
 		user.Post("/login", h.UserLogin)
 		user.Post("/login-social", h.UserLoginBySocial)
+		user.Post("/logout", middleware.Authorization(), h.UserLogout)
 		user.Post("/register", h.UserRegister)
-		user.Post("/refresh-token", middleware.Authorization(), h.CreateRefreshToken)
+		user.Post("/request-reset-password", h.UserRequestResetPassword)
+	}
+
+	auth := basePathV1.Group("/auth")
+	{
+		auth.Post("/refresh", middleware.Authorization(), h.CreateRefreshToken)
 	}
 
 	return &Router{app: app}, nil
