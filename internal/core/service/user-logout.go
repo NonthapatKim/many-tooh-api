@@ -9,7 +9,7 @@ import (
 )
 
 func (s *service) UserLogout(req domain.UserLogoutRequest) (domain.UserLogoutResponse, error) {
-	if req.UserToken == "" {
+	if req.AccessToken == "" {
 		return domain.UserLogoutResponse{}, errors.New("token is required")
 	}
 
@@ -17,7 +17,7 @@ func (s *service) UserLogout(req domain.UserLogoutRequest) (domain.UserLogoutRes
 		return domain.UserLogoutResponse{}, fmt.Errorf("local_device_token is required")
 	}
 
-	userId, err := function.ValidateAccessToken(&req.UserToken)
+	userId, err := function.ValidateAccessToken(&req.AccessToken)
 	if err != nil {
 		return domain.UserLogoutResponse{}, err
 	}

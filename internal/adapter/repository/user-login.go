@@ -30,10 +30,8 @@ func (r *repository) UserLogin(req domain.UserLoginRequest) (domain.UserLoginRes
 		return result, err
 	}
 
-	if req.Password != nil {
-		if bcrypt.CompareHashAndPassword([]byte(*result.Password), []byte(*req.Password)) != nil {
-			return result, errors.New("incorrect password")
-		}
+	if bcrypt.CompareHashAndPassword([]byte(*result.Password), []byte(*req.Password)) != nil {
+		return result, errors.New("incorrect password")
 	}
 
 	result.Password = nil

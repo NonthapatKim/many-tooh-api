@@ -18,7 +18,7 @@ func Authorization() fiber.Handler {
 			}
 
 			tokenString := parts[1]
-			c.Locals("accessToken", tokenString)
+			c.Locals("access_token", tokenString)
 		}
 
 		return c.Next()

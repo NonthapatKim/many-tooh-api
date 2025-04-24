@@ -22,14 +22,12 @@ import (
 func (h *handler) CreateRefreshToken(c *fiber.Ctx) error {
 	var refreshTokenReq domain.CreateRefreshTokenRequest
 
-	refreshToken := c.Locals("userToken").(string)
-
 	if err := c.BodyParser(&refreshTokenReq); err != nil {
 		return response.JSONErrorResponse(c, fiber.StatusUnauthorized, err.Error(), nil)
 	}
 
 	req := domain.CreateRefreshTokenRequest{
-		RefreshToken:     refreshToken,
+		RefreshToken:     refreshTokenReq.RefreshToken,
 		LocalDeviceToken: refreshTokenReq.LocalDeviceToken,
 	}
 

@@ -20,7 +20,11 @@ import (
 func (h *handler) UserLogout(c *fiber.Ctx) error {
 	var userLogout domain.UserLogoutRequest
 
-	tokenString := c.Locals("userToken").(string)
+	accessToken := c.Locals("access_token")
+	tokenString, ok := accessToken.(string)
+	if !ok {
+		return response.JSONErrorResponse(c, fiber.StatusUnauthorized, "Invalid or missing access token", nil)
+	}
 
 	if err := c.BodyParser(&userLogout); err != nil {
 		return response.JSONErrorResponse(c, fiber.StatusUnauthorized, err.Error(), nil)
@@ -28,7 +32,7 @@ func (h *handler) UserLogout(c *fiber.Ctx) error {
 
 	req := domain.UserLogoutRequest{
 		LocalDeviceToken: userLogout.LocalDeviceToken,
-		UserToken:        tokenString,
+		AccessToken:      tokenString,
 	}
 
 	result, err := h.svc.UserLogout(req)

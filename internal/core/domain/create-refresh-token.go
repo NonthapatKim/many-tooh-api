@@ -2,7 +2,7 @@ package domain
 
 type CreateRefreshTokenRequest struct {
 	LocalDeviceToken string `json:"local_device_token" validate:"required"`
-	RefreshToken     string
+	RefreshToken     string `json:"refresh_token" validate:"required"`
 }
 
 type CreateRefreshTokenResponse struct {

@@ -13,7 +13,7 @@ func (r *repository) UserLoginBySocial(req domain.UserLoginBySocialRequest) (dom
 	err := r.db.QueryRow(
 		`SELECT 
 			user_id
-		FROM user 
+		FROM users
 		WHERE email = ?`,
 		req.Email,
 	).Scan(

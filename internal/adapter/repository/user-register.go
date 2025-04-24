@@ -8,7 +8,7 @@ import (
 
 func (r *repository) UserRegister(req domain.UserRegisterRequest) (domain.UserRegisterResponse, error) {
 	query := `
-		INSERT INTO user (
+		INSERT INTO users (
 			email, 
 			fullname,
 			password

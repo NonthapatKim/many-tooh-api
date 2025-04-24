@@ -14,8 +14,8 @@ func (r *repository) UserResetPassword(req domain.UserResetPasswordRequest) (dom
 	err := r.db.QueryRow(
 		`SELECT 
 			CASE 
-				WHEN EXISTS(SELECT 1 FROM user WHERE reset_password_token = ?) 
-				THEN (SELECT user_id FROM user WHERE reset_password_token = ? LIMIT 1) 
+				WHEN EXISTS(SELECT 1 FROM users WHERE reset_password_token = ?) 
+				THEN (SELECT user_id FROM users WHERE reset_password_token = ? LIMIT 1) 
 				ELSE NULL 
 			END AS user_id;
 		`,
@@ -30,7 +30,7 @@ func (r *repository) UserResetPassword(req domain.UserResetPasswordRequest) (dom
 	}
 
 	_, err = r.db.Exec(
-		`UPDATE user SET password = ? WHERE user_id = ?`,
+		`UPDATE users SET password = ?, reset_password_token = NULL WHERE user_id = ?`,
 		req.Password,
 		result.UserId,
 	)

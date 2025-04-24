@@ -10,7 +10,7 @@ func (r *repository) CheckUser(req domain.CheckUserRequest) (domain.CheckUserRes
 	var exists bool
 
 	query := `
-		SELECT EXISTS(SELECT 1 FROM user WHERE email = ?)
+		SELECT EXISTS(SELECT 1 FROM users WHERE email = ?)
 	`
 
 	err := r.db.QueryRow(query, req.Email).Scan(&exists)

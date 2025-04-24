@@ -1,0 +1,28 @@
+package handler
+
+import (
+	"github.com/NonthapatKim/many-tooth-api/internal/core/domain"
+	"github.com/NonthapatKim/many-tooth-api/internal/core/domain/response"
+	"github.com/gofiber/fiber/v2"
+)
+
+func (h *handler) UserFavProductById(c *fiber.Ctx) error {
+	accessToken := c.Locals("access_token")
+	tokenString, ok := accessToken.(string)
+	if !ok {
+		return response.JSONErrorResponse(c, fiber.StatusUnauthorized, "Invalid or missing access token", nil)
+	}
+
+	productId := c.Params("productId")
+
+	req := domain.UserFavProductByIdRequest{
+		AccessToken: tokenString,
+		ProductId:   productId,
+	}
+	result, err := h.svc.UserFavProductById(req)
+	if err != nil {
+		return response.JSONErrorResponse(c, fiber.StatusUnauthorized, err.Error(), nil)
+	}
+
+	return response.JSONSuccessResponse(c, result)
+}

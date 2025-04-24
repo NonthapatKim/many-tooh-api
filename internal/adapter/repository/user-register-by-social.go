@@ -9,7 +9,7 @@ import (
 
 func (r *repository) UserRegisterBySocial(req domain.UserRegisterBySocialRequest) (domain.UserRegisterBySocialResponse, error) {
 	query := `
-		INSERT INTO user (
+		INSERT INTO users (
 			email, 
 			created_at
 		) VALUES (?, ?)
