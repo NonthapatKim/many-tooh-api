@@ -17,6 +17,20 @@ func (s *service) GetUserById(req domain.GetUserByIdRequest) (domain.GetUserById
 		return domain.GetUserByIdResponse{}, err
 	}
 
+	reqUserExists := domain.CheckExistsRequest{
+		Table:  "users",
+		Column: "user_id",
+		Id:     &userId,
+	}
+
+	exists, err := s.repo.CheckExists(reqUserExists)
+	if err != nil {
+		return domain.GetUserByIdResponse{}, err
+	}
+	if !exists.Exists {
+		return domain.GetUserByIdResponse{}, errors.New("error: user not found")
+	}
+
 	req.UserId = userId
 
 	result, err := s.repo.GetUserById(req)

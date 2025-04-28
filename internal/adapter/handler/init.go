@@ -10,6 +10,9 @@ type handler struct {
 }
 
 type Handler interface {
+	// Brand
+	GetBrands(c *fiber.Ctx) error
+
 	// Interest
 	CreateUserInterest(c *fiber.Ctx) error
 	GetInterests(c *fiber.Ctx) error
@@ -21,6 +24,7 @@ type Handler interface {
 
 	// User
 	GetUserById(c *fiber.Ctx) error
+	UpdateUserById(c *fiber.Ctx) error
 	UserLogin(c *fiber.Ctx) error
 	UserLoginBySocial(c *fiber.Ctx) error
 	UserLogout(c *fiber.Ctx) error
@@ -31,6 +35,7 @@ type Handler interface {
 	// Mixed
 	UserFavProductById(c *fiber.Ctx) error
 	GetUserFavProduct(c *fiber.Ctx) error
+	GetProductByInterest(c *fiber.Ctx) error
 
 	// Refresh Token
 	CreateRefreshToken(c *fiber.Ctx) error

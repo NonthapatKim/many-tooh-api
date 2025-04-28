@@ -36,11 +36,13 @@ func NewRouter(h handler.Handler) (*Router, error) {
 	// Swagger UI
 	basePathV1.Get("/swagger/*", swagger.HandlerDefault)
 
+	basePathV1.Get("/brands", h.GetBrands)
 	basePathV1.Get("/interests", h.GetInterests)
 
 	product := basePathV1.Group("/products")
 	{
-		product.Get("/", h.GetProducts)
+		product.Get("/", middleware.Authorization(), h.GetProducts)
+		product.Get("/interests", middleware.Authorization(), h.GetProductByInterest)
 		product.Get("/categories", h.GetProductCategories)
 		product.Get("/types", h.GetProductType)
 	}
@@ -48,6 +50,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 	user := basePathV1.Group("/users")
 	{
 		user.Get("/", middleware.Authorization(), h.GetUserById)
+		user.Patch("/", middleware.Authorization(), h.UpdateUserById)
 		user.Post("/login", h.UserLogin)
 		user.Post("/login-social", h.UserLoginBySocial)
 		user.Post("/logout", middleware.Authorization(), h.UserLogout)
@@ -55,7 +58,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 		user.Post("/request-reset-password", h.UserRequestResetPassword)
 		user.Put("/reset-password", h.UserResetPassword)
 
-		user.Post("/interests", middleware.Authorization(), h.CreateUserInterest)
+		user.Post("/products/interests", middleware.Authorization(), h.CreateUserInterest)
 
 		// Product
 		user.Get("/fav", middleware.Authorization(), h.GetUserFavProduct)

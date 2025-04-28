@@ -2,6 +2,11 @@ package domain
 
 import "time"
 
+type GetProductsRequest struct {
+	AccessToken string
+	UserId      string
+}
+
 type GetProductsResponse struct {
 	ProductId           string     `json:"product_id"`
 	BrandId             string     `json:"brand_id"`
@@ -20,6 +25,7 @@ type GetProductsResponse struct {
 	ActiveIngredient    *string    `json:"active_ingredient"`
 	DangerousIngredient *string    `json:"dangerous_ingredient"`
 	IsDangerous         bool       `json:"is_dangerous"`
+	IsFav               bool       `json:"is_fav"`
 	CreatedAt           time.Time  `json:"created_at"`
 	UpdatedAt           *time.Time `json:"updated_at"`
 }

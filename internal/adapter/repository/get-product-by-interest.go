@@ -6,7 +6,7 @@ import (
 	"github.com/NonthapatKim/many-tooth-api/internal/core/domain"
 )
 
-func (r *repository) GetProducts(req domain.GetProductsRequest) ([]domain.GetProductsResponse, error) {
+func (r *repository) GetProductByInterest(req domain.GetProductByInterestRequest) ([]domain.GetProductsResponse, error) {
 	var result []domain.GetProductsResponse
 
 	query := `
@@ -41,11 +41,14 @@ func (r *repository) GetProducts(req domain.GetProductsRequest) ([]domain.GetPro
 			ON prod.product_category_id = prod_cate.category_id
 		INNER JOIN product_type prod_type
 			ON prod.product_type_id = prod_type.product_type_id
+		INNER JOIN user_interest user_int
+			ON prod_type.interest_id = user_int.interest_id
+			AND user_int.user_id = ?
 		LEFT JOIN user_favorite_product user_fav
 			ON prod.product_id = user_fav.product_id
 			AND user_fav.user_id = ?
 	`
-	rows, err := r.db.Query(query, req.UserId)
+	rows, err := r.db.Query(query, req.UserId, req.UserId)
 	if err != nil {
 		return nil, fmt.Errorf("error querying product: %w", err)
 	}

@@ -23,9 +23,9 @@ func (r *repository) UserFavProductById(req domain.UserFavProductByIdRequest) (d
 
 	if !exists {
 		query := `
-			INSERT INTO artists_followers (
+			INSERT INTO user_favorite_product (
 				user_id, 
-				artist_id
+				product_id
 			) VALUES (?, ?)
 		`
 		_, err := r.db.Exec(query, req.UserId, req.ProductId)
@@ -43,7 +43,7 @@ func (r *repository) UserFavProductById(req domain.UserFavProductByIdRequest) (d
 	query := `
 		DELETE 
 		FROM 
-			auser_favorite_product
+			user_favorite_product
 		WHERE 
 			user_id = ? 
 			AND product_id = ?

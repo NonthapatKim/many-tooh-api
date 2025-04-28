@@ -7,7 +7,7 @@ import (
 	"github.com/NonthapatKim/many-tooth-api/internal/core/function"
 )
 
-func (s *service) GetProducts(req domain.GetProductsRequest) ([]domain.GetProductsResponse, error) {
+func (s *service) GetProductByInterest(req domain.GetProductByInterestRequest) ([]domain.GetProductsResponse, error) {
 	if req.AccessToken == "" {
 		return nil, errors.New("token is required")
 	}
@@ -33,7 +33,7 @@ func (s *service) GetProducts(req domain.GetProductsRequest) ([]domain.GetProduc
 
 	req.UserId = userId
 
-	result, err := s.repo.GetProducts(req)
+	result, err := s.repo.GetProductByInterest(req)
 	if err != nil {
 		return nil, err
 	}

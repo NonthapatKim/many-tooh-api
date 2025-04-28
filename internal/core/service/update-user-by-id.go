@@ -7,14 +7,14 @@ import (
 	"github.com/NonthapatKim/many-tooth-api/internal/core/function"
 )
 
-func (s *service) GetProducts(req domain.GetProductsRequest) ([]domain.GetProductsResponse, error) {
+func (s *service) UpdateUserById(req domain.UpdateUserByIdRequest) (domain.UpdateUserByIdResponse, error) {
 	if req.AccessToken == "" {
-		return nil, errors.New("token is required")
+		return domain.UpdateUserByIdResponse{}, errors.New("token is required")
 	}
 
 	userId, err := function.ValidateAccessToken(&req.AccessToken)
 	if err != nil {
-		return nil, err
+		return domain.UpdateUserByIdResponse{}, err
 	}
 
 	reqUserExists := domain.CheckExistsRequest{
@@ -25,17 +25,17 @@ func (s *service) GetProducts(req domain.GetProductsRequest) ([]domain.GetProduc
 
 	exists, err := s.repo.CheckExists(reqUserExists)
 	if err != nil {
-		return nil, err
+		return domain.UpdateUserByIdResponse{}, err
 	}
 	if !exists.Exists {
-		return nil, errors.New("error: user not found")
+		return domain.UpdateUserByIdResponse{}, errors.New("error: user not found")
 	}
 
 	req.UserId = userId
 
-	result, err := s.repo.GetProducts(req)
+	result, err := s.repo.UpdateUserById(req)
 	if err != nil {
-		return nil, err
+		return result, err
 	}
 
 	return result, nil
