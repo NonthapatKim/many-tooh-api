@@ -1,7 +1,8 @@
 package domain
 
 type UserRegisterBySocialRequest struct {
-	Email string `json:"email"`
+	Email string
+	Name  string
 }
 
 type UserRegisterBySocialResponse struct {

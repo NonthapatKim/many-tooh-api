@@ -52,7 +52,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 		user.Get("/", middleware.Authorization(), h.GetUserById)
 		user.Patch("/", middleware.Authorization(), h.UpdateUserById)
 		user.Post("/login", h.UserLogin)
-		user.Post("/login-social", h.UserLoginBySocial)
+		user.Post("/login/social", h.UserLoginBySocial)
 		user.Post("/logout", middleware.Authorization(), h.UserLogout)
 		user.Post("/register", h.UserRegister)
 		user.Post("/request-reset-password", h.UserRequestResetPassword)

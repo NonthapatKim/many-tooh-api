@@ -11,12 +11,14 @@ func (r *repository) UserRegisterBySocial(req domain.UserRegisterBySocialRequest
 	query := `
 		INSERT INTO users (
 			email, 
+			fullname,
 			created_at
-		) VALUES (?, ?)
+		) VALUES (?, ?, ?)
 	`
 	_, err := r.db.Exec(
 		query,
 		req.Email,
+		req.Name,
 		time.Now(),
 	)
 	if err != nil {

@@ -5,7 +5,9 @@ import "github.com/NonthapatKim/many-tooth-api/internal/core/domain"
 func (s *service) UserRegisterBySocial(req domain.UserRegisterBySocialRequest) (domain.UserRegisterBySocialResponse, error) {
 	var message string
 
-	reqCheckUser := domain.CheckUserRequest(req)
+	reqCheckUser := domain.CheckUserRequest{
+		Email: req.Email,
+	}
 
 	userExists, err := s.repo.CheckUser(reqCheckUser)
 	if err != nil {

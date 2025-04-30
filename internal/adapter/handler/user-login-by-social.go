@@ -26,9 +26,9 @@ func (h *handler) UserLoginBySocial(c *fiber.Ctx) error {
 	}
 
 	req := domain.UserLoginBySocialRequest{
-		Email:  user.Email,
-		Method: user.Method,
-		Token:  user.Token,
+		LocalDeviceToken: user.LocalDeviceToken,
+		Method:           user.Method,
+		Token:            user.Token,
 	}
 
 	result, err := h.svc.UserLoginBySocial(req)

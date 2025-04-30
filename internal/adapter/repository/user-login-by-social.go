@@ -26,5 +26,5 @@ func (r *repository) UserLoginBySocial(req domain.UserLoginBySocialRequest) (dom
 		return domain.UserLoginBySocialResult{}, err
 	}
 
-	return domain.UserLoginBySocialResult{}, nil
+	return result, nil
 }
