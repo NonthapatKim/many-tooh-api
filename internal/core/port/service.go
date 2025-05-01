@@ -30,6 +30,7 @@ type Service interface {
 	UserRegisterBySocial(req domain.UserRegisterBySocialRequest) (domain.UserRegisterBySocialResponse, error)
 	UserRequestResetPassword(req domain.UserRequestResetPasswordRequest) (domain.UserRequestResetPasswordResponse, error)
 	UserResetPassword(req domain.UserResetPasswordRequest) (domain.UserResetPasswordResponse, error)
+	UserDeleteAccount(req domain.UserDeleteAccountRequest) (domain.UserDeleteAccountResponse, error)
 
 	// Mixed
 	UserFavProductById(req domain.UserFavProductByIdRequest) (domain.UserFavProductByIdResponse, error)

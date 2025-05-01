@@ -31,6 +31,7 @@ type Handler interface {
 	UserRegister(c *fiber.Ctx) error
 	UserRequestResetPassword(c *fiber.Ctx) error
 	UserResetPassword(c *fiber.Ctx) error
+	UserDeleteAccount(c *fiber.Ctx) error
 
 	// Mixed
 	UserFavProductById(c *fiber.Ctx) error
