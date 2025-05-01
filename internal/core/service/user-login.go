@@ -1,7 +1,6 @@
 package service
 
 import (
-	"database/sql"
 	"errors"
 
 	"github.com/NonthapatKim/many-tooth-api/internal/core/domain"
@@ -63,11 +62,7 @@ func (s *service) UserLogin(req domain.UserLoginRequest) (domain.UserLoginRespon
 
 	counterResult, err := s.repo.GetRefreshToken(reqCount)
 	if err != nil {
-		if err == sql.ErrNoRows {
-			counterResult.Counter = 1
-		} else {
-			return response, errors.New("error get count refresh token")
-		}
+		return response, err
 	}
 
 	tokenId := nuid.Next()
