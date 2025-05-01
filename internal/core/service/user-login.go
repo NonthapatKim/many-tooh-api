@@ -62,7 +62,7 @@ func (s *service) UserLogin(req domain.UserLoginRequest) (domain.UserLoginRespon
 
 	counterResult, err := s.repo.GetRefreshToken(reqCount)
 	if err != nil {
-		return response, err
+		return response, errors.New("error get count refresh token")
 	}
 
 	tokenId := nuid.Next()
@@ -77,7 +77,7 @@ func (s *service) UserLogin(req domain.UserLoginRequest) (domain.UserLoginRespon
 
 	err = s.repo.SaveRefreshToken(reqSaveRefreshToken)
 	if err != nil {
-		return response, errors.New("error save refresh token")
+		return response, err
 	}
 
 	refreshToken, err := function.GenerateRefreshToken(tokenId, loginResult.UserId, counter)
