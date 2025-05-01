@@ -3,11 +3,11 @@ package server
 import (
 	"log"
 
-	"github.com/NonthapatKim/many_tooth_api/infrastructure"
-	"github.com/NonthapatKim/many_tooth_api/internal/adapter/handler"
-	"github.com/NonthapatKim/many_tooth_api/internal/adapter/repository"
-	"github.com/NonthapatKim/many_tooth_api/internal/core/service"
-	"github.com/NonthapatKim/many_tooth_api/internal/router"
+	"github.com/NonthapatKim/many-tooth-api/infrastructure"
+	"github.com/NonthapatKim/many-tooth-api/internal/adapter/handler"
+	"github.com/NonthapatKim/many-tooth-api/internal/adapter/repository"
+	"github.com/NonthapatKim/many-tooth-api/internal/core/service"
+	"github.com/NonthapatKim/many-tooth-api/internal/router"
 )
 
 func RunServer() error {

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/NonthapatKim/many_tooth_api/internal/core/domain"
+	"github.com/NonthapatKim/many-tooth-api/internal/core/domain"
 	"github.com/gofiber/fiber/v2"
 )
 

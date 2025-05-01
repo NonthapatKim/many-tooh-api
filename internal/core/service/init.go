@@ -1,6 +1,6 @@
 package service
 
-import "github.com/NonthapatKim/many_tooth_api/internal/core/port"
+import "github.com/NonthapatKim/many-tooth-api/internal/core/port"
 
 type service struct {
 	repo port.Repository

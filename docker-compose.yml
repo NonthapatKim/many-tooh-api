@@ -1,10 +1,11 @@
 services:
-  many-tooth:
-    container_name: many-tooth-api
+   many-tooh:
+    container_name: many-tooh
+    image: many-tooh-api
     platform: linux/amd64
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     ports:
       - "4200:4200"
     environment:
