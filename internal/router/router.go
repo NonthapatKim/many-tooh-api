@@ -57,6 +57,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 		user.Post("/register", h.UserRegister)
 		user.Post("/request-reset-password", h.UserRequestResetPassword)
 		user.Put("/reset-password", h.UserResetPassword)
+		user.Delete("/delete", middleware.Authorization(), h.UserDeleteAccount)
 
 		user.Post("/products/interests", middleware.Authorization(), h.CreateUserInterest)
 

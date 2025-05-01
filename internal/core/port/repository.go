@@ -26,6 +26,7 @@ type Repository interface {
 	UserRegisterBySocial(req domain.UserRegisterBySocialRequest) (domain.UserRegisterBySocialResponse, error)
 	UserRequestResetPassword(req domain.UserRequestResetPasswordRequest) (domain.UserRequestResetPasswordResult, error)
 	UserResetPassword(req domain.UserResetPasswordRequest) (domain.UserResetPasswordResult, error)
+	UserDeleteAccount(req domain.UserDeleteAccountRequest) (domain.UserDeleteAccountResponse, error)
 
 	// Mixed
 	UserFavProductById(req domain.UserFavProductByIdRequest) (domain.UserFavProductByIdResponse, error)
