@@ -22,7 +22,7 @@ func NewRouter(h handler.Handler) (*Router, error) {
 
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
-		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowMethods: "GET,POST,PUT,PATCH,DELETE",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 	}))
 
