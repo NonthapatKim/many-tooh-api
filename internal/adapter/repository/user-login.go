@@ -39,5 +39,6 @@ func (r *repository) UserLogin(req domain.UserLoginRequest) (domain.UserLoginRes
 	result = domain.UserLoginResult{
 		UserId: result.UserId,
 	}
+
 	return result, nil
 }
