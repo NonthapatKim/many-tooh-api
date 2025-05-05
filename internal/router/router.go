@@ -64,6 +64,8 @@ func NewRouter(h handler.Handler) (*Router, error) {
 		// Product
 		user.Get("/fav", middleware.Authorization(), h.GetUserFavProduct)
 		user.Put("/fav/:productId", middleware.Authorization(), h.UserFavProductById)
+
+		user.Post("/products/suggest", middleware.Authorization(), h.AddProductByUser)
 	}
 
 	auth := basePathV1.Group("/auth")

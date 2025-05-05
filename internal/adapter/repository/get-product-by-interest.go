@@ -47,6 +47,7 @@ func (r *repository) GetProductByInterest(req domain.GetProductByInterestRequest
 		LEFT JOIN user_favorite_product user_fav
 			ON prod.product_id = user_fav.product_id
 			AND user_fav.user_id = ?
+		ORDER BY user_int.interest_id;
 	`
 	rows, err := r.db.Query(query, req.UserId, req.UserId)
 	if err != nil {

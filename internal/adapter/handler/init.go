@@ -37,6 +37,7 @@ type Handler interface {
 	UserFavProductById(c *fiber.Ctx) error
 	GetUserFavProduct(c *fiber.Ctx) error
 	GetProductByInterest(c *fiber.Ctx) error
+	AddProductByUser(c *fiber.Ctx) error
 
 	// Refresh Token
 	CreateRefreshToken(c *fiber.Ctx) error
