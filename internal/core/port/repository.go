@@ -38,4 +38,6 @@ type Repository interface {
 	SaveRefreshToken(req domain.SaveRefreshTokenRequest) error
 
 	CheckExists(req domain.CheckExistsRequest) (domain.CheckExistsResponse, error)
+
+	AddProductByUser(req domain.AddProductByUserRequest) (domain.AddProductByUserResponse, error)
 }

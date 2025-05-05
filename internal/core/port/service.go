@@ -45,4 +45,6 @@ type Service interface {
 	CreateRefreshToken(req domain.CreateRefreshTokenRequest) (domain.CreateRefreshTokenResponse, error)
 	GetRefreshToken(req domain.GetRefreshTokenRequest) (domain.GetRefreshTokenResponse, error)
 	SaveRefreshToken(req domain.SaveRefreshTokenRequest) error
+
+	AddProductByUser(req domain.AddProductByUserRequest) (domain.AddProductByUserResponse, error)
 }
